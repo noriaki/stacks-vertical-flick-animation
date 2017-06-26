@@ -10,6 +10,13 @@ export default class extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0" />
           <link rel="stylesheet" href="/static/normalize.css" />
+          <link
+            rel="stylesheet"
+            href="//fonts.googleapis.com/css?family=Roboto:300,400,500" />
+          <link
+            rel="stylesheet"
+            href="//fonts.googleapis.com/earlyaccess/notosansjp.css" />
+          <link rel="stylesheet" href="/static/style.css" />
         </Head>
         <body>
           <Main />
