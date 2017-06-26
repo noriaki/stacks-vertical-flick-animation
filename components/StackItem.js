@@ -5,9 +5,14 @@ import { DragSource, DropTarget } from 'react-dnd';
 
 const style = {
   border: '1px dashed gray',
-  padding: '0.5rem 1rem',
+  borderLeft: 'none',
+  borderRight: 'none',
+  padding: '0.5rem 0',
   marginBottom: '.5rem',
-  backgroundColor: 'white',
+  backgroundColor: '#d0d0d0',
+  height: 150,
+  position: 'absolute',
+  width: '100%',
 };
 
 const itemSource = {
@@ -45,6 +50,7 @@ class StackItem extends Component {
     isLast: PropTypes.bool.isRequired,
     isDragging: PropTypes.bool.isRequired,
     index: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     moveItem: PropTypes.func.isRequired,
   }
@@ -55,12 +61,18 @@ class StackItem extends Component {
       connectDropTarget,
       isLast,
       isDragging,
+      index,
+      size,
       id,
     } = this.props;
+    const order = (size - 1 - index) * 4;
     const finalStyle = {
       ...style,
       cursor: isLast ? 'move' : 'default',
       opacity: isDragging ? 0 : 1,
+      top: (32 * index) + 16,
+      left: `${order}%`,
+      width: `${100 - (order * 2)}%`,
     };
     const elem = <div style={finalStyle}>No. {id}</div>;
     return connectDropTarget(isLast ? connectDragSource(elem) : elem);
